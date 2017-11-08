@@ -15,5 +15,25 @@
 </head>
 <body>
     <h1>Kirjaudu sisään</h1>
+
+    <form action="Kirjaudu" method="post">
+
+        <p>Tällä sivulle voit rekisteröityä käyttäjäksi</p>
+        <br><br>
+        Käyttäjätunnus: <input type="text" name="nimi"><br>
+        <br><br>
+        Salasana: <input type="password" name="salasana"><br>
+        <br><br>
+
+        <input type="submit" value="Kirjaudu">
+
+        <%
+            if(null!=request.getAttribute("errorMessage"))
+            {
+                out.println(request.getAttribute("errorMessage"));
+            }
+        %>
+
+    </form><br>
 </body>
 </html>
