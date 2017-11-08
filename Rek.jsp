@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <a href="index.jsp">Etusivu</a>
+<a href="HaeKeskustelu">Foorumi</a>
 <a href="Rek.jsp">Rekisteroidy</a>
 <a href="Kirjaudu.jsp">Kirjaudu</a>
 <head>
@@ -24,9 +25,9 @@
     <br><br>
     Käyttäjätunnus: <input type="text" name="nimi"><br>
     <br><br>
-    Salasana: <input type="password" name="nimimerkki"><br>
+    Salasana: <input type="password" name="salasana"><br>
     <br><br>
-    Salasana uudestaan: <input type="text" name="nimi"><br>
+    Salasana uudestaan: <input type="password" name="salasanab"><br>
 
     <input type="submit" value="Lähetä">
 

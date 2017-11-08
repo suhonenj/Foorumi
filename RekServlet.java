@@ -21,23 +21,39 @@ public class RekServlet extends HttpServlet {
 //        HttpSession istunto = request.getSession(false);
 //        Integer kayttaja = Integer.parseInt(request.getParameter("kayttaja"));
         String nimi = request.getParameter("nimi");
-        String nimimerkki = request.getParameter("nimimerkki");
+        String salasana = request.getParameter("salasana");
+        String salasanab= request.getParameter("salasanab");
+        if (!salasana.equals(salasanab)){
+            System.out.println("Salasana ei täsmää");
+            response.sendRedirect("Rek.jsp");
+
+        }
 //        istunto.setAttribute("kayttaja", kayttaja);
 //        istunto.setAttribute("otsikko", otsikko);
 //        istunto.setAttribute("viesti", viesti);
         try {
             Connection con = ds.getConnection();
-            String sql = "Insert into henkilo (nimi,nimimerkki) values (?,?)";
+            String sql = "Select nimi from henkilo where nimi = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1,nimi);
-            stmt.setString(2,nimimerkki);
-            stmt.execute();
-            System.out.println("Yhteys saatiin!");
+            ResultSet rs =stmt.executeQuery();
+            if (rs.next()) {
+                System.out.println("Nimimerkki varattu");
+                response.sendRedirect("Rek.jsp");
+
+            } else {
+                String sql1 = "Insert into henkilo (nimi, salasana) values(?,?)";
+                PreparedStatement prep = con.prepareStatement(sql1);
+                prep.setString(1, nimi);
+                prep.setString(2, salasana);
+                prep.execute();
+                response.sendRedirect("index.jsp");
+
+            }
             //tähän kohtaan vaihtoehdot
         } catch (SQLException e) {
             System.err.println("Yhteys epäonnistui! "+ e.getMessage());
         }
-        response.sendRedirect("index.jsp");
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request,response);
