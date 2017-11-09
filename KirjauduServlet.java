@@ -25,7 +25,7 @@ public class KirjauduServlet extends HttpServlet {
 
         try {
             Connection con = ds.getConnection();
-            String sql = "Select nimi, salasana from henkilo where nimi =? and salasana=?";
+            String sql = "Select nimi, salasana, kuvaus from henkilo where nimi =? and salasana=?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, nimi);
             stmt.setString(2, salasana);
@@ -42,8 +42,12 @@ public class KirjauduServlet extends HttpServlet {
             } else {
                 HttpSession istunto = request.getSession();
                 String kjanimi = request.getParameter("nimi");
+                String salasana1 = request.getParameter("salasana");
 
+                String kuvaus1 = rs.getString("kuvaus");
                 istunto.setAttribute("nimi", kjanimi);
+                istunto.setAttribute("salasana", salasana1);
+                istunto.setAttribute("kuvaus", kuvaus1);
                 response.sendRedirect("KirjoitaViesti");
             }
 
