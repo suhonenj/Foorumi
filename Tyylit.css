@@ -1,24 +1,82 @@
-table, th, td{border: 1px solid black}
-table{border-collapse: collapse}
+th, td{
+    border: 2px solid white;
+    border-collapse: collapse;
+    border-radius:5px;
+    border-color: white ;
+
+}
 table{
     width:60%;
     alignment: center;
+    color:white;
 }
 tr{
     width: 100%;}
+tr.tr{
+    background-color: black;
+    border-radius: 5px;
+}
 th{
     text-align: center;
-    height: 20px;}
+    height: 20px;
+}
+
 td{
     text-align: left;
-    height: 50px;}
-#otsikko {
-position: relative;
-top:80px;
+    height: 50px;
+    padding-left: 10px;
+}
+td{
+    background-color: black;
+}
+/*#otsikko {*/
+/*position: relative;*/
+/*top:80px;*/
+/*}*/
+
+body{background-color: black;
+    background-image: url("http://bestanimations.com/Earth&Space/Moon/moon-animation29.gif");
+    background-repeat: no-repeat;
+    background-position: right 55px bottom 55px;
+    background-size: 600px 600px;
 }
 h2 {}
 h3 {}
-p {}
+p {
+    color:white;
+
+}
+#x{
+    display: flex;
+    flex-direction: row;
+}
+th.oikea{
+    text-align: right;
+    padding-right: 10px;
+    background-color: black;
+
+}
+th.vasen{
+    text-align: left;
+    padding-left: 10px;
+    background-color: black;
+
+}
+th.foorumi{
+    border:none;
+    text-align: left;
+    padding-left: 10px;
+    font-size: 25px;
+    color: white;
+
+
+}
+th.foorumi a:link{
+    color: white;
+}
+th.foorumi a:visited{
+    color: white;
+}
 
 div.sisalto{
     width: 50%;
@@ -40,13 +98,14 @@ nav{font-family: "Comic Sans MS";
     text-align: center;
     position: fixed;
 }
-body{background-color: lightgoldenrodyellow}
 
 
 ul.topnav {
     list-style-type: none;
+    width: 95%;
     margin: 0;
     padding: 0;
+    padding-right: 80px;
     overflow: hidden;
     background-color: #333;
 }
@@ -62,17 +121,111 @@ ul.topnav li a {
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
     text-decoration: none;
+}
+ul.topnav li.hakupalkki input[type=text] {
+    width: 130px;
+}
+ul.topnav li.hakupalkki {
+    float:right;
+    display:inline-block;
+}
+/*ul.topnav li.hakupalkki input[type=text]:focus {*/
+    /*width: 100%;*/
+/*}*/
+ul.topnav li.hakupalkki input[type=text] {
+    width: 130px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    padding: 12px 20px 12px 40px;
 }
 
 ul.topnav li a:hover:not(.active) {background-color: #111;}
 
-ul.topnav li a.active {background-color: #4CAF50;}
+ul.topnav li a.active {background-color: mediumpurple;}
 
 ul.topnav li.right {float: right;}
 
 @media screen and (max-width: 600px){
     ul.topnav li.right,
     ul.topnav li {float: none;}
+}
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+button, .hae {
+    background-color: mediumpurple;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+.cancelbtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+}
+.signupbtn {
+    background-color: #00da1f;
+    float: left;
+    width: 50%;
+}
+.cancelbtn,.signupbtn {
+    float: left;
+    width: 50%;
+}
+.container {
+    padding: 16px;
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto;
+    border: 1px solid #888;
+    width: 80%;
+}
+.close {
+    position: absolute;
+    right: 35px;
+    top: 15px;
+    color: #000;
+    font-size: 40px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: red;
+    cursor: pointer;
+}
+/* Clear floats */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+/*skaalaus*/
+@media screen and (max-width: 300px) {
+    .cancelbtn, .signupbtn {
+        width: 100%;
+    }
 }
