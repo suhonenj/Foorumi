@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.*;
@@ -22,6 +23,7 @@ public class HaeKeskusteluServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession istunto = request.getSession();
         StringBuilder sb = new StringBuilder();
         StringBuilder yleinen = new StringBuilder();
         StringBuilder erikoinen = new StringBuilder();
@@ -38,31 +40,58 @@ public class HaeKeskusteluServlet extends HttpServlet {
             while (set.next()) {
                 int alueid = set.getInt(1);
                 if(alueid==1) {
-                    String sql = "Select alueid, aihe, otsikko, viesti from viesti where alueid=? order by id desc limit 2";
+                    String sql = " Select viesti.otsikko, viesti.viesti, viesti.kirjoitettu, henkilo.nimi, alue.nimi, alue.alueid from alue inner join viesti on alue.alueid=viesti.alueid inner join henkilo on kirjoittaja=hloid where alue.alueid=? order by viesti.id DESC limit 2";
                     PreparedStatement stmt = con.prepareStatement(sql);
                     stmt.setInt(1, alueid);
                     ResultSet rs = stmt.executeQuery();
                     while (rs.next()) {
-                        yleinen.append("<tr><th colspan=2>" + rs.getString("otsikko") + "</th><tr>");
-                        yleinen.append("<tr><td>" + rs.getString("viesti") + "</td></tr>");
+                        String otsikko = rs.getString("otsikko");
+                        String viesti = rs.getString("viesti");
+                        Date aika=rs.getDate(3);
+                        String nimi = rs.getString(4);
+                        String alue = rs.getString(5);
+                        int aluetunnus = rs.getInt(6);
+                        Time klo = rs.getTime(3);
+                        yleinen.append("<tr class='tr'><th class='vasen'>"+otsikko+"</th><th>" + nimi+
+                                "</th><th><a href='HaeAlue?name="+alueid+"'>" + alue +
+                                " keskustelu</a></th><th class='oikea'>Lähetetty: "+aika+", klo " +klo+"</th></tr>");
+                        yleinen.append("<tr><td colspan='4'>"+viesti+"</td></tr>");
                     }
                 } else if (alueid==2){
-                    String sql = "Select alueid, aihe, otsikko, viesti from viesti where alueid=? order by id desc limit 2";
+                    String sql = " Select viesti.otsikko, viesti.viesti, viesti.kirjoitettu, henkilo.nimi, alue.nimi, alue.alueid from alue inner join viesti on alue.alueid=viesti.alueid inner join henkilo on kirjoittaja=hloid where alue.alueid=? order by viesti.id DESC limit 2";
                     PreparedStatement stmt = con.prepareStatement(sql);
                     stmt.setInt(1, alueid);
                     ResultSet rs = stmt.executeQuery();
                     while (rs.next()) {
-                        salainen.append("<tr><th colspan=2>" + rs.getString("otsikko") + "</th><tr>");
-                        salainen.append("<tr><td>" + rs.getString("viesti") + "</td></tr>");
+                        String otsikko = rs.getString("otsikko");
+                        String viesti = rs.getString("viesti");
+                        Date aika=rs.getDate(3);
+                        String nimi = rs.getString(4);
+                        String alue = rs.getString(5);
+                        int aluetunnus = rs.getInt(6);
+                        Time klo = rs.getTime(3);
+                        salainen.append("<tr class='tr'><th class='vasen'>"+otsikko+"</th><th>" + nimi+
+                                "</th><th><a href='HaeAlue?name="+alueid+"'>" + alue +
+                                " keskustelu</a></th><th class='oikea'>Lähetetty: "+aika+", klo " +klo+"</th></tr>");
+                        salainen.append("<tr><td colspan='4'>"+viesti+"</td></tr>");
                     }
                 } else if (alueid==3){
-                    String sql = "Select alueid, aihe, otsikko, viesti from viesti where alueid=? order by id desc limit 2";
+                    String sql = " Select viesti.otsikko, viesti.viesti, viesti.kirjoitettu, henkilo.nimi, alue.nimi, alue.alueid from alue inner join viesti on alue.alueid=viesti.alueid inner join henkilo on kirjoittaja=hloid where alue.alueid=? order by viesti.id DESC limit 2";
                     PreparedStatement stmt = con.prepareStatement(sql);
                     stmt.setInt(1, alueid);
                     ResultSet rs = stmt.executeQuery();
                     while (rs.next()) {
-                        erikoinen.append("<tr><th colspan=2>" + rs.getString("otsikko") + "</th><tr>");
-                        erikoinen.append("<tr><td>" + rs.getString("viesti") + "</td></tr>");
+                        String otsikko = rs.getString("otsikko");
+                        String viesti = rs.getString("viesti");
+                        Date aika=rs.getDate(3);
+                        String nimi = rs.getString(4);
+                        String alue = rs.getString(5);
+                        int aluetunnus = rs.getInt(6);
+                        Time klo = rs.getTime(3);
+                        erikoinen.append("<tr class='tr'><th class='vasen'>"+otsikko+"</th><th>" + nimi+
+                                "</th><th><a href='HaeAlue?name="+alueid+"'>" + alue +
+                                " keskustelu</a></th><th class='oikea'>Lähetetty: "+aika+", klo " +klo+"</th></tr>");
+                        erikoinen.append("<tr><td colspan='4'>"+viesti+"</td></tr>");
                     }
                 }
 

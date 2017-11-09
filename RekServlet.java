@@ -18,8 +18,6 @@ public class RekServlet extends HttpServlet {
     @Resource(name="jdbc/Foorumi")
     DataSource ds;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        HttpSession istunto = request.getSession(false);
-//        Integer kayttaja = Integer.parseInt(request.getParameter("kayttaja"));
         String nimi = request.getParameter("nimi");
         String salasana = request.getParameter("salasana");
         String salasanab= request.getParameter("salasanab");
@@ -28,9 +26,6 @@ public class RekServlet extends HttpServlet {
             response.sendRedirect("Rek.jsp");
 
         }
-//        istunto.setAttribute("kayttaja", kayttaja);
-//        istunto.setAttribute("otsikko", otsikko);
-//        istunto.setAttribute("viesti", viesti);
         try {
             Connection con = ds.getConnection();
             String sql = "Select nimi from henkilo where nimi = ?";
@@ -39,7 +34,7 @@ public class RekServlet extends HttpServlet {
             ResultSet rs =stmt.executeQuery();
             if (rs.next()) {
                 System.out.println("Nimimerkki varattu");
-                response.sendRedirect("Rek.jsp");
+                response.sendRedirect("HaeViestit");
 
             } else {
                 String sql1 = "Insert into henkilo (nimi, salasana) values(?,?)";

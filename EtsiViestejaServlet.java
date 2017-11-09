@@ -8,10 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 
 @WebServlet(name = "EtsiViestejaServlet", urlPatterns = "/EtsiViesteja")
@@ -27,30 +24,38 @@ public class EtsiViestejaServlet extends HttpServlet {
         String tulos2=null;
         String etsittava = request.getParameter("etsiotsikko");
         String viesti2 = request.getParameter("etsiviesti");
+        request.setCharacterEncoding("UTF-8");
         try {
             Connection con = ds.getConnection();
-            String sql = "Select otsikko, viesti from viesti where otsikko like ? and viesti like ?";
+            String sql = "select viesti.otsikko, viesti.viesti, henkilo.nimi, viesti.kirjoitettu, alue.nimi, alue.alueid from alue inner join viesti on alue.alueid=viesti.alueid inner join henkilo on kirjoittaja=hloid where viesti like ?";
             PreparedStatement stmt = con.prepareStatement(sql);
-            stmt.setString(1,"%"+ etsittava +"%");
-            stmt.setString(2, "%" + viesti2 +"%");
+
+            stmt.setString(1, "%" + viesti2 +"%");
             //stmt.setString(2,viesti);
             ResultSet rs = stmt.executeQuery();
 
-          if (!rs.next()) {
-              sb.append("ei tuloksia");
-          } else
-            do {
-                if (etsittava.isEmpty() && viesti2.isEmpty()) {
-                    sb.append("ei tuloksia");
-                    break;
-                } else {
-                    String otsikko = rs.getString("otsikko");
-                    String viesti = rs.getString("viesti");
-                    sb.append(otsikko + "<br>");
-                    sb.append(viesti + "<br>");
+            if (!rs.next()) {
+                sb.append("ei tuloksia");
+            } else
+                do {
+                    if (viesti2.isEmpty()) {
+                        sb.append("ei tuloksia");
+                        break;
+                    } else {
+                        String otsikko = rs.getString(1);
+                        String viesti = rs.getString(2);
+                        Date aika=rs.getDate(4);
+                        String nimi = rs.getString(3);
+                        String alue = rs.getString(5);
+                        int alueid = rs.getInt(6);
+                        Time klo = rs.getTime(4);
+                        sb.append("<tr class='tr'><th class='vasen'>"+otsikko+"</th><th>" + nimi+
+                                "</th><th><a href='HaeAlue?name="+alueid+"'>" + alue +
+                                " keskustelu</a></th><th class='oikea'>Lähetetty: "+aika+", klo " +klo+"</th></tr>");
+                        sb.append("<tr><td colspan='4'>"+viesti+"</td></tr>");
 
-                }
-            } while (rs.next());
+                    }
+                } while (rs.next());
 
             tulos2 = sb.toString();
             request.setAttribute("tulos2",tulos2);

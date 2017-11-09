@@ -1,5 +1,6 @@
 package foorumi;
 
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -24,9 +25,17 @@ public class HaeViestitServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         StringBuilder sb = new StringBuilder();
         String tulos=null;
+        HttpSession istunto = request.getSession();
+        String kjanimi =(String)istunto.getAttribute("nimi");
         try {
             Connection con = ds.getConnection();
-            String sql = " Select viesti.otsikko, viesti.viesti, viesti.kirjoitettu, henkilo.nimi, alue.nimi, alue.alueid from alue inner join viesti on alue.alueid=viesti.alueid inner join henkilo on kirjoittaja=hloid order by viesti.id DESC ";
+            String sql=null;
+            if (kjanimi!=null){
+                sql = " Select viesti.otsikko, viesti.viesti, viesti.kirjoitettu, henkilo.nimi, alue.nimi, alue.alueid from alue inner join viesti on alue.alueid=viesti.alueid inner join henkilo on kirjoittaja=hloid order by viesti.id DESC limit 10";
+
+            } else {
+                sql = " Select viesti.otsikko, viesti.viesti, viesti.kirjoitettu, henkilo.nimi, alue.nimi, alue.alueid from alue inner join viesti on alue.alueid=viesti.alueid inner join henkilo on kirjoittaja=hloid where alue.alueid!=2 order by viesti.id DESC limit 10";
+            }
             PreparedStatement stmt = con.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             sb.append("<table>");
@@ -43,6 +52,7 @@ public class HaeViestitServlet extends HttpServlet {
                 sb.append("<tr><td colspan='4'>"+viesti+"</td></tr>");
             }
             sb.append("</table>");
+
             tulos = sb.toString();
             request.setAttribute("tulos",tulos);
             if(tulos.isEmpty())
