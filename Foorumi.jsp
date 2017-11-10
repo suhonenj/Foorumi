@@ -83,7 +83,7 @@
 <br>
 <table>
 
-    <tr><th class="foorumi"><a href="HaeAlue?name=1"> Yleinen keskustelu</a></th></tr>
+    <tr><th class="foorumi" colspan="2"><a href="HaeAlue?name=1"> Yleinen keskustelu</a></th></tr>
     <% String yleinen = (String) request.getAttribute("yleinen");
     out.println(yleinen);
     %>
@@ -93,14 +93,14 @@
     <% String salainen = (String) request.getAttribute("salainen");
         if(nimi!=null){
             out.print("  <table>"+
-                    "    <th class=\"foorumi\"><a href=\"HaeAlue?name=2\"> Salainen keskustelu</a></th></tr>");
+                    "    <th class=\"foorumi\" colspan=\"2\"><a href=\"HaeAlue?name=2\"> Salainen keskustelu</a></th></tr>");
             out.println(salainen);
             out.print("</table>");
         }
     %>
 <br>
 <table>
-    <tr><th class="foorumi"><a href="HaeAlue?name=3"> Erikoinen keskustelu</a></th></tr>
+    <tr><th class="foorumi" colspan="2"><a href="HaeAlue?name=3"> Erikoinen keskustelu</a></th></tr>
     <% String erikoinen = (String) request.getAttribute("erikoinen");
         out.println(erikoinen);
     %>

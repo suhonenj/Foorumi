@@ -78,7 +78,7 @@
 
     <p style="clear: both;">Muokkaa profiiliasi</p>
     <br><br>
-    Käyttäjätunnus: <input type="text" name="nimi" value=<%=istunto.getAttribute("nimi")%>><br>
+    Käyttäjätunnus: <input type="text" name="nimi" value="<%=istunto.getAttribute("nimi")%>"><br>
 
     Kuvaus käyttäjästä: <input type="text" name="kuvaus" value="<%=istunto.getAttribute("kuvaus")%>"><br>
 

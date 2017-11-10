@@ -54,7 +54,7 @@ public class HaeKeskusteluServlet extends HttpServlet {
                         Time klo = rs.getTime(3);
                         yleinen.append("<tr class='tr'><th class='vasen'>"+otsikko+"</th><th>" + nimi+
                                 "</th><th><a href='HaeAlue?name="+alueid+"'>" + alue +
-                                " keskustelu</a></th><th class='oikea'>Lähetetty: "+aika+", klo " +klo+"</th></tr>");
+                                " keskustelu</a></th><th class='oikea'>Lähetetty: "+aika+"<br>klo " +klo+"</th></tr>");
                         yleinen.append("<tr><td colspan='4'>"+viesti+"</td></tr>");
                     }
                 } else if (alueid==2){

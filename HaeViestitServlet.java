@@ -48,7 +48,7 @@ public class HaeViestitServlet extends HttpServlet {
                 String alue = rs.getString(5);
                 Time klo = rs.getTime(3);
                 int alueid = rs.getInt(6);
-                sb.append("<tr><th style='text-align:left'>"+otsikko+"</th><th>" + nimi+ "</th><th><a href='HaeAlue?name="+alueid+"'>" + alue +" keskustelu</a></th><th style='text-align:right'>Lähetetty: "+aika+", klo " +klo+"</th></tr>");
+                sb.append("<tr><th style='text-align:left'>"+otsikko+"</th><th>" + nimi+ "</th><th><a href='HaeAlue?name="+alueid+"'>" + alue +" keskustelu</a></th><th style='text-align:right'>Lähetetty: "+aika+"<br>klo " +klo+"</th></tr>");
                 sb.append("<tr><td colspan='4'>"+viesti+"</td></tr>");
             }
             sb.append("</table>");

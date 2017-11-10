@@ -100,7 +100,7 @@
     if (nimi!=null){
         out.print("<form action=\"KirjoitaViesti?name=1\" accept-charset=\"UTF-8\" method=\"post\">\n" +
                 "    Kirjoita otsikko:<br><input type=\"text\", name=\"otsikko\", style=\"width: 50%;\" value=\"Otsikko\"><br>\n" +
-                "    Kirjoita viesti:<br><input name=\"viesti\", style=\"width:50%;\" autofocus=\"autofocus\">\n" +
+                "    Kirjoita viesti:<br><input type=\"text\", name=\"viesti\", style=\"width:50%;\"autofocus=\"autofocus\">\n" +
                 "    <br><input type=\"submit\", value=\"Lähetä\">\n" +
                 "</form>");
     }

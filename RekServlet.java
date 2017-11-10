@@ -18,21 +18,22 @@ public class RekServlet extends HttpServlet {
     @Resource(name="jdbc/Foorumi")
     DataSource ds;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         String nimi = request.getParameter("nimi");
         String salasana = request.getParameter("salasana");
         String salasanab= request.getParameter("salasanab");
-        if (!salasana.equals(salasanab)){
-            System.out.println("Salasana ei täsmää");
-            response.sendRedirect("Rek.jsp");
 
-        }
         try {
             Connection con = ds.getConnection();
             String sql = "Select nimi from henkilo where nimi = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1,nimi);
             ResultSet rs =stmt.executeQuery();
-            if (rs.next()) {
+            if (!salasana.equals(salasanab)){
+                System.out.println("Salasana ei täsmää");
+                response.sendRedirect("HaeKeskustelu");
+            }
+             else if (rs.next()) {
                 System.out.println("Nimimerkki varattu");
                 response.sendRedirect("HaeViestit");
 

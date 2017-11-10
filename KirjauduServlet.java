@@ -19,7 +19,7 @@ public class KirjauduServlet extends HttpServlet {
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.setCharacterEncoding("UTF-8");
         String nimi = request.getParameter("nimi");
         String salasana = request.getParameter("salasana");
 
@@ -36,9 +36,11 @@ public class KirjauduServlet extends HttpServlet {
                 HttpSession session = request.getSession();
 
                 session.invalidate();
-                request.setAttribute("errorMessage", "Käyttäjätunnus tai salasana on väärä!");
-                RequestDispatcher rd = request.getRequestDispatcher("Kirjaudu.jsp");
-                rd.forward(request, response);
+                response.sendRedirect("HaeKeskustelu");
+
+//                request.setAttribute("errorMessage", "Käyttäjätunnus tai salasana on väärä!");
+//                RequestDispatcher rd = request.getRequestDispatcher("HaeViestit");
+//                rd.forward(request, response);
             } else {
                 HttpSession istunto = request.getSession(true);
                 String kjanimi = request.getParameter("nimi");
