@@ -5,6 +5,9 @@ th, td{
     border-color: white ;
 
 }
+head{
+    opacity: 1;
+}
 table{
     width:60%;
     alignment: center;
@@ -29,27 +32,49 @@ td{
 td{
     background-color: black;
 }
-/*#otsikko {*/
-/*position: relative;*/
-/*top:80px;*/
-/*}*/
+#otsikko{
+    color: white;
+}
 
 body{background-color: black;
     background-image: url("http://bestanimations.com/Earth&Space/Moon/moon-animation29.gif");
     background-repeat: no-repeat;
     background-position: right 55px bottom 55px;
     background-size: 600px 600px;
+
 }
-h2 {}
-h3 {}
+body{
+    position: absolute;
+    top: 100px;
+    width: 80% ;
+    margin-left: 10%;
+    margin-right: 50%;
+}
+h1{
+    color: white;;
+}
+form{
+    color: white;
+}
+h2 {    color: white;;
+}
+h3 {
+    color:white;
+}
 p {
     color:white;
 
+}
+text{color:white;
 }
 #x{
     display: flex;
     flex-direction: row;
 }
+
+
+
+
 th.oikea{
     text-align: right;
     padding-right: 10px;
@@ -71,11 +96,14 @@ th.foorumi{
 
 
 }
-th.foorumi a:link{
+a:link{
     color: white;
 }
-th.foorumi a:visited{
+a:visited{
     color: white;
+}
+a:hover{
+    color: red;
 }
 
 div.sisalto{
@@ -99,15 +127,19 @@ nav{font-family: "Comic Sans MS";
     position: fixed;
 }
 
-
+body > input[type=text]{
+    border-radius: 5px;
+}
 ul.topnav {
     list-style-type: none;
     width: 95%;
-    margin: 0;
+
+    margin-right: 50%;
     padding: 0;
-    padding-right: 80px;
+    /*padding-right: 80px;*/
+    top: 0%;
     overflow: hidden;
-    background-color: #333;
+    background-color: black;
 }
 
 ul.topnav li {float: left;}
@@ -129,6 +161,7 @@ ul.topnav li.hakupalkki input[type=text] {
 ul.topnav li.hakupalkki {
     float:right;
     display:inline-block;
+    margin-right: 50%;
 }
 /*ul.topnav li.hakupalkki input[type=text]:focus {*/
     /*width: 100%;*/
@@ -136,15 +169,17 @@ ul.topnav li.hakupalkki {
 ul.topnav li.hakupalkki input[type=text] {
     width: 130px;
     border: 2px solid #ccc;
-    border-radius: 4px;
     font-size: 16px;
     background-color: white;
     padding: 12px 20px 12px 40px;
 }
 
-ul.topnav li a:hover:not(.active) {background-color: #111;}
+body form{
+    border-radius: 4px;
+}
+/*ul.topnav li a:hover:not(.active) {background-color: #111;}*/
 
-ul.topnav li a.active {background-color: mediumpurple;}
+/*ul.topnav li a.active {background-color: mediumpurple;}*/
 
 ul.topnav li.right {float: right;}
 
@@ -160,8 +195,15 @@ input[type=text], input[type=password] {
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
+button:hover{
+background-color: darkgrey;
+    transition-duration: 0.4s;
+
+}
+
+
 button, .hae {
-    background-color: mediumpurple;
+    background-color: grey;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -189,18 +231,19 @@ button, .hae {
     display: none;
     position: fixed;
     z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
+    left: 10%;
+    top: 0%;
+    width: 60%;
     height: 100%;
+
     overflow: auto;
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
     padding-top: 60px;
 }
 .modal-content {
-    background-color: #fefefe;
-    margin: 5% auto 15% auto;
+    background-color: darkgrey;
+    margin: 5% auto 10% auto;
     border: 1px solid #888;
     width: 80%;
 }
@@ -228,4 +271,9 @@ button, .hae {
     .cancelbtn, .signupbtn {
         width: 100%;
     }
+}
+.keskel{
+    font-size: 8px;
+text-align: justify;
+    width: 60%;
 }

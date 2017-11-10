@@ -35,7 +35,7 @@ public class EtsiViestejaServlet extends HttpServlet {
             ResultSet rs = stmt.executeQuery();
 
             if (!rs.next()) {
-                sb.append("ei tuloksia");
+                sb.append("<p style = \"font-size:20px; color: white\";> Ei tuloksia </p>");
             } else
                 do {
                     if (viesti2.isEmpty()) {

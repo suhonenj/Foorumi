@@ -7,6 +7,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+<% HttpSession istunto = request.getSession();
+    String nimi =(String)istunto.getAttribute("nimi");
+%>
 <head>
     <link rel="stylesheet" type="text/css" href="Tyylit.css">
     <title>Etsi</title>
@@ -48,8 +51,8 @@
                     "                    <input type=\"password\" placeholder=\"Syötä salasana\" name=\"salasana\" required>\n" +
                     "                    <label><b>Syötä salasana uudelleen</b></label>\n" +
                     "                    <input type=\"password\" placeholder=\"Syötä salasana\" name=\"salasanab\" required>\n" +
-                    "                    <input type=\"checkbox\" checked=\"checked\"> Muista minut\n" +
-                    "                    <p>Rekisteröitymällä hyväksyt käyttöehdot <a href=\"#\">Käyttäjäehdot</a>.</p>\n" +
+                    "                    <input type=\"checkbox\" checked=\"checked\"> Hyväksyn käyttöehdot\n" +
+                    "                    <p>Rekisteröitymällä hyväksyt käyttöehdot <a href=\"KayttoEhdot.jsp\">Käyttäjäehdot</a></p>\n" +
                     "                    <div class=\"clearfix\">\n" +
                     "                        <button type=\"button\" onclick=\"document.getElementById('rekisteroidy').style.display='none'\" class=\"cancelbtn\">Peruuta</button>\n" +
                     "                        <button type=\"submit\" class=\"signupbtn\">Rekisteröidy</button>\n" +
@@ -74,9 +77,9 @@
     </li>
 </ul>
 <body>
-<div class="body">
-<h1>Etsi Viestejä</h1>
-<p>Voit etsiä viestejä otsikon ja viestin sisällön perusteella.</p>
+    <p><img src="kuutamolla.fi.png" width="600px" align="left"><br></p>
+<h2 style="clear: both;">Hakutulokset:</h2>
+    <p></p>
 <%--<form action="EtsiViesteja" method="get">--%>
     <%--Kirjoita otsikko: <input type="text", name="etsiotsikko"><br><br>--%>
     <%--Kirjoita viesti: <input type="text", name="etsiviesti"> <br><br>--%>

@@ -48,8 +48,8 @@
                     "                    <input type=\"password\" placeholder=\"Syötä salasana\" name=\"salasana\" required>\n" +
                     "                    <label><b>Syötä salasana uudelleen</b></label>\n" +
                     "                    <input type=\"password\" placeholder=\"Syötä salasana\" name=\"salasanab\" required>\n" +
-                    "                    <input type=\"checkbox\" checked=\"checked\"> Muista minut\n" +
-                    "                    <p>Rekisteröitymällä hyväksyt käyttöehdot <a href=\"#\">Käyttäjäehdot</a>.</p>\n" +
+                    "                    <input type=\"checkbox\" checked=\"checked\"> Hyväksyn käyttöehdot\n" +
+                    "                    <p>Rekisteröitymällä hyväksyt käyttöehdot <a href=\"KayttoEhdot.jsp\">Käyttäjäehdot</a></p>\n" +
                     "                    <div class=\"clearfix\">\n" +
                     "                        <button type=\"button\" onclick=\"document.getElementById('rekisteroidy').style.display='none'\" class=\"cancelbtn\">Peruuta</button>\n" +
                     "                        <button type=\"submit\" class=\"signupbtn\">Rekisteröidy</button>\n" +
@@ -74,17 +74,17 @@
     </li>
 </ul>
 <body>
-<h1>VAUVA24.FI</h1>
-  <h2>Uusimmat viestit</h2>
-<%--<form action="KirjoitaViesti" accept-charset="UTF-8" method="post">--%>
-  <%--&lt;%&ndash;<input type="text", name="kayttaja">&ndash;%&gt;--%>
-  <%--Kirjoita otsikko:<input type="text", name="otsikko", value="Otsikko"><br>--%>
-  <%--Kirjoita viesti:<input type="text", name="viesti", style="height: 200px;">--%>
-  <%--<input type="submit", value="Lähetä">--%>
-<%--</form>--%>
-<%--<form action="HaeViestit" method="get">--%>
-  <%--<input type="submit" value="Hae Viestit">--%>
-<%--</form>--%>
+<p><img src="kuutamolla.fi.png" width="600px" align="left"><br></p>
+
+<%
+    if (nimi!=null){
+        out.println("<br><p style=\"clear: both;\">Tervetuloa " + nimi +"!</p>");
+    } else {
+        out.println("<br><p style=\"clear: both;\">Tervetuloa Kuutamolla.fi-keskustelupalstalle! Kirjaudu sisään osallistuaksesi keskusteluun</p>");
+    }
+%>
+<p></p>
+<h2 style="clear: both;">Uusimmat viestit</h2>
   <%
     String a=(String)request.getAttribute("tulos");
     if(a!=null){

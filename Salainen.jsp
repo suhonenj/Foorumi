@@ -51,8 +51,8 @@
                     "                    <input type=\"password\" placeholder=\"Syötä salasana\" name=\"salasana\" required>\n" +
                     "                    <label><b>Syötä salasana uudelleen</b></label>\n" +
                     "                    <input type=\"password\" placeholder=\"Syötä salasana\" name=\"salasanab\" required>\n" +
-                    "                    <input type=\"checkbox\" checked=\"checked\"> Muista minut\n" +
-                    "                    <p>Rekisteröitymällä hyväksyt käyttöehdot <a href=\"#\">Käyttäjäehdot</a>.</p>\n" +
+                    "                    <input type=\"checkbox\" checked=\"checked\"> Hyväksyn käyttöehdot\n" +
+                    "                    <p>Rekisteröitymällä hyväksyt käyttöehdot <a href=\"KayttoEhdot.jsp\">Käyttäjäehdot</a></p>\n" +
                     "                    <div class=\"clearfix\">\n" +
                     "                        <button type=\"button\" onclick=\"document.getElementById('rekisteroidy').style.display='none'\" class=\"cancelbtn\">Peruuta</button>\n" +
                     "                        <button type=\"submit\" class=\"signupbtn\">Rekisteröidy</button>\n" +
@@ -77,27 +77,37 @@
     </li>
 </ul>
 <body>
-<h1>VAUVA24.FI</h1>
-<h2>Salainen keskustelu</h2>
+    <img src="kuutamolla.fi.png" width="600px" align="left"><br>
+    <h1 style="clear: both;">Salainen keskustelu</h1>
+    <%        out.println("<br><p style=\"clear: both;\">Tervetuloa " + nimi +"!</p>");
+    %>
+    <p></p>
+    <br>
 <a href="HaeAlue?name=1">Yleinen keskustelu</a>
 <%
     if (nimi!=null){
         out.print("<a href=\"HaeAlue?name=2\">Salainen keskustelu</a>\n");
     }
-%><a href="HaeAlue?name=3">Erikoinen keskustelu</a>
-<%
+%>
+    <a href="HaeAlue?name=3">Erikoinen keskustelu</a>
+
+    <p></p>
+
+    <%
+        if (nimi!=null){
+            out.print("<form action=\"KirjoitaViesti?name=2\" accept-charset=\"UTF-8\" method=\"post\">\n" +
+                    "    Kirjoita otsikko:<br><input type=\"text\", name=\"otsikko\", style=\"width: 50%;\" value=\"Otsikko\"><br>\n" +
+                    "    Kirjoita viesti:<br><input type=\"text\", name=\"viesti\", style=\"width:50%;\" autofocus=\"autofocus\">\n" +
+                    "    <br><input type=\"submit\", value=\"Lähetä\">\n" +
+                    "</form>");
+        }
+    %>
+    <p></p>
+
+    <%
     String tavara =(String)request.getAttribute("tavara");
     out.print(tavara);
 %>
 
-<%
-    if (nimi!=null){
-        out.print("<form action=\"KirjoitaViesti?name=2\" accept-charset=\"UTF-8\" method=\"post\">\n" +
-                "    Kirjoita otsikko:<input type=\"text\", name=\"otsikko\", value=\"Otsikko\"><br>\n" +
-                "    Kirjoita viesti:<input type=\"text\", name=\"viesti\", style=\"height: 200px;\">\n" +
-                "    <input type=\"submit\", value=\"Lähetä\">\n" +
-                "</form>");
-    }
-%>
 </body>
 </html>

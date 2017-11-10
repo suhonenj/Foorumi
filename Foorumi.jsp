@@ -44,8 +44,8 @@
                     "                    <input type=\"password\" placeholder=\"Syötä salasana\" name=\"salasana\" required>\n" +
                     "                    <label><b>Syötä salasana uudelleen</b></label>\n" +
                     "                    <input type=\"password\" placeholder=\"Syötä salasana\" name=\"salasanab\" required>\n" +
-                    "                    <input type=\"checkbox\" checked=\"checked\"> Muista minut\n" +
-                    "                    <p>Rekisteröitymällä hyväksyt käyttöehdot <a href=\"#\">Käyttäjäehdot</a>.</p>\n" +
+                    "                    <input type=\"checkbox\" checked=\"checked\"> Hyväksyn käyttöehdot\n" +
+                    "                    <p>Rekisteröitymällä hyväksyt käyttöehdot <a href=\"KayttoEhdot.jsp\">Käyttäjäehdot</a></p>\n" +
                     "                    <div class=\"clearfix\">\n" +
                     "                        <button type=\"button\" onclick=\"document.getElementById('rekisteroidy').style.display='none'\" class=\"cancelbtn\">Peruuta</button>\n" +
                     "                        <button type=\"submit\" class=\"signupbtn\">Rekisteröidy</button>\n" +
@@ -70,20 +70,16 @@
     </li>
 </ul>
 <body>
-<h1 id="otsikko">VAUVA24.FI</h1>
-<h2>Foorumi</h2>
+<p><img src="kuutamolla.fi.png" width="600px" align="left"><br></p>
+<h1 style="clear: both;">Onko kuu juustoa?</h1>
 <%
     if (nimi!=null){
-        out.println("Tervetuloa " + nimi +"!<br>");
+        out.println("<br><p style=\"clear: both;\">Tervetuloa " + nimi +"!</p>");
+    } else {
+        out.println("<br><p style=\"clear: both;\">Tervetuloa Kuutamolla.fi-keskustelupalstalle! Kirjaudu sisään osallistuaksesi keskusteluun</p>");
     }
 %>
-<a href="HaeAlue?name=1">Yleinen keskustelu</a>
-<%
-    if (nimi!=null){
-        out.print("<a href=\"HaeAlue?name=2\">Salainen keskustelu</a>\n");
-    }
-%>
-<a href="HaeAlue?name=3">Erikoinen keskustelu</a>
+<p></p>
 <br>
 <table>
 

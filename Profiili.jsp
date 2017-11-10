@@ -45,8 +45,8 @@
                     "                    <input type=\"password\" placeholder=\"Syötä salasana\" name=\"salasana\" required>\n" +
                     "                    <label><b>Syötä salasana uudelleen</b></label>\n" +
                     "                    <input type=\"password\" placeholder=\"Syötä salasana\" name=\"salasanab\" required>\n" +
-                    "                    <input type=\"checkbox\" checked=\"checked\"> Muista minut\n" +
-                    "                    <p>Rekisteröitymällä hyväksyt käyttöehdot <a href=\"#\">Käyttäjäehdot</a>.</p>\n" +
+                    "                    <input type=\"checkbox\" checked=\"checked\"> Hyväksyn käyttöehdot\n" +
+                    "                    <p>Rekisteröitymällä hyväksyt käyttöehdot <a href=\"KayttoEhdot.jsp\">Käyttäjäehdot</a></p>\n" +
                     "                    <div class=\"clearfix\">\n" +
                     "                        <button type=\"button\" onclick=\"document.getElementById('rekisteroidy').style.display='none'\" class=\"cancelbtn\">Peruuta</button>\n" +
                     "                        <button type=\"submit\" class=\"signupbtn\">Rekisteröidy</button>\n" +
@@ -71,13 +71,12 @@
     </li>
 </ul>
 <body>
-<br><br>
-<br><br>
-
-<h2> Profiili</h2>
+    <img src="kuutamolla.fi.png" width="600px" align="center"><br>
+<div style="width: 50%">
+    <h1 style="clear: both;">Hei, <%=istunto.getAttribute("nimi")%></h1>
 <form action="Profiili" method="post">
 
-    <p>Muokkaa profiiliasi</p>
+    <p style="clear: both;">Muokkaa profiiliasi</p>
     <br><br>
     Käyttäjätunnus: <input type="text" name="nimi" value=<%=istunto.getAttribute("nimi")%>><br>
 
@@ -86,8 +85,6 @@
 
     <input type="submit" value="Lähetä">
 
-    <%=session.getAttribute("nimi")%>
-
-</form><br>
+</form><br></div>
 </body>
 </html>
